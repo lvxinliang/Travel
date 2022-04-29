@@ -4,10 +4,8 @@
       <source :src="audio.src">
     </audio>
     <div @click="play" :class="{'active': audio.playing}" class="icons">
-      <div class="icon">
-        <div class="icon-img">
-          <img class="music-icon" src="@/assets/images/music.png"/>
-        </div>
+      <div class="icon-img">
+        <img class="music-icon" src="@/assets/images/music.png"/>
       </div>
     </div>
   </div>
@@ -49,27 +47,23 @@ export default {
 
 .icons
   overflow hidden
+  position relative
   height 0
   width .8rem
   padding-bottom .8rem
-  .icon
-    position relative
+
+  .icon-img
+    position absolute
+    widith 100%
+    height 100%
     overflow hidden
-    float left
-    width 100%
-    padding-bottom 100%
-    .icon-img
-      position absolute
-      top 0
-      left 0
-      right 0
-      bottom 0
-      .music-icon
-        height 100%
+
+    .music-icon
+      height 100%
+
 .active
-  .icon
-    .icon-img
-      .music-icon
-        //持续旋转 360 度
-        animation: rotate-img 3s infinite linear
+  .icon-img
+    .music-icon
+      //持续旋转 360 度
+      animation: rotate-img 3s infinite linear
 </style>
