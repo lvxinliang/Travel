@@ -1,27 +1,28 @@
 <template>
   <div>
-    <home-header></home-header>
+    <home-page/>
     <music-player/>
+    <next-button/>
   </div>
 </template>
 
 <script>
-import HomeHeader from './components/Header'
+import HomePage from './components/HomePage'
 import MusicPlayer from './components/MusicPlayer'
+import NextButton from './components/NextButton'
 export default {
   name: 'Home',
-  components: {MusicPlayer, HomeHeader}
+  components: {NextButton, MusicPlayer, HomePage}
 }
 </script>
-import HomeHeader from './components/Header'
+import HomePage from './components/HomePage'
 import MusicPlayer from './components/MusicPlayer'
 export default {
   name: 'Home',
   components: {
-    HomeHeader,
+    HomePage,
     MusicPlayer
   }
 }
-<style scoped>
-
+<style lang="stylus" scoped>
 </style>

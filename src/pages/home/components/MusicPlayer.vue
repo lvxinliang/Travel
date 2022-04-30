@@ -5,7 +5,7 @@
     </audio>
     <div @click="play" :class="{'active': audio.playing}" class="icons">
       <div class="icon-img">
-        <img class="music-icon" src="@/assets/images/music.png"/>
+        <img class="music-icon" :src="audio.playIcon"/>
       </div>
     </div>
   </div>
@@ -13,13 +13,18 @@
 </template>
 
 <script>
+
+import musicMute from '../../../assets/images/music_mute.png'
+import musicPlay from '../../../assets/images/music_play.png'
+
 export default {
   name: 'MusicPlayer',
   data () {
     return {
       audio: {
         src: 'https://fengxianqi.github.io/v-audio-player/dist/media/sometimes_when_we_touch.010fafb2.mp3',
-        playing: false
+        playing: false,
+        playIcon: musicMute
       }
     }
   },
@@ -28,8 +33,10 @@ export default {
       this.audio.playing = !this.audio.playing
       if (this.audio.playing) {
         this.$refs.audioTip.play()
+        this.audio.playIcon = musicPlay
       } else {
         this.$refs.audioTip.pause()
+        this.audio.playIcon = musicMute
       }
     }
   }
@@ -48,8 +55,8 @@ export default {
 .music-div
   z-index: 9999;
   position: fixed;
-  right .1rem
-  top .1rem
+  left 1rem
+  top .5rem
 
   .icons
     overflow hidden
