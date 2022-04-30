@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="music-div">
     <audio ref="audioTip" style="display:none;">
       <source :src="audio.src">
     </audio>
@@ -45,21 +45,27 @@ export default {
     transform: rotate(360deg);
   }
 
-.icons
-  overflow hidden
-  position relative
-  height 0
-  width .8rem
-  padding-bottom .8rem
+.music-div
+  z-index: 9999;
+  position: fixed;
+  right .1rem
+  top .1rem
 
-  .icon-img
-    position absolute
-    widith 100%
-    height 100%
+  .icons
     overflow hidden
+    position relative
+    height 0
+    width .8rem
+    padding-bottom .8rem
 
-    .music-icon
+    .icon-img
+      position absolute
+      widith 100%
       height 100%
+      overflow hidden
+
+      .music-icon
+        height 100%
 
 .active
   .icon-img
