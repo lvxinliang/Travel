@@ -16,13 +16,14 @@
 
 import musicMute from '../../../assets/images/music_mute.png'
 import musicPlay from '../../../assets/images/music_play.png'
-
+import music from '../../../assets/audio/music.mp3'
 export default {
   name: 'MusicPlayer',
   data () {
     return {
       audio: {
-        src: 'https://fengxianqi.github.io/v-audio-player/dist/media/sometimes_when_we_touch.010fafb2.mp3',
+        // src: 'https://fengxianqi.github.io/v-audio-player/dist/media/sometimes_when_we_touch.010fafb2.mp3',
+        src: music,
         playing: false,
         playIcon: musicMute
       }
