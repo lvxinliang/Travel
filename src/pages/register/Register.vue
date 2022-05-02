@@ -124,7 +124,7 @@ export default {
     //background-color #a41818
     margin-left .3rem
     margin-right .3rem
-    height 60%
+    height 70%
     .register-top
       height .3rem
       .register-top-img
@@ -161,7 +161,7 @@ export default {
         background-color #00ff00
         height 3.2rem
         padding-top .2rem
-        margin-top .7rem
+        margin-top .2rem
         .green-left
           margin .2rem .0rem .2rem .3rem
           border-radius .2rem
@@ -233,7 +233,7 @@ export default {
       .bottom-div
         height 15%
         padding-left .3rem
-        margin-top .7rem
+        margin-top .3rem
         //background-color #25a4bb
         .bottom-logo
           float left
