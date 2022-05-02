@@ -33,13 +33,13 @@
             <div class="green-right-body">
               <div class="green-text-div">
                 <div class="name">
-                  <span>I'M NO.{{info.num}}</span><br/>
+                  <span>I'M </span><span class="black-span">NO.{{info.num}}</span><br/>
                   <span>MY</span><br/>
                   <span>OWNER IS:</span><br/>
                   <img class="direct-img" :src="directImg">
                   <span>I LIVE IN:</span><br/>
-                  <input class="info-input" type="text" maxlength="15"  v-bind:value="info.name"/>
-                  <input class="info-input" type="text" maxlength="15" v-bind:value="info.phone"/>
+                  <input class="info-input black-input" @change="uppercaseName()" type="text" placeholder="输入姓名拼音" maxlength="15" v-model="info.name"/>
+                  <input class="info-input" type="text" @change="uppercasePhone()" placeholder="输入手机型号" maxlength="15" v-model="info.phone"/>
                 </div>
               </div>
               <div class="green-img-div">
@@ -91,8 +91,8 @@ export default {
       nowDateTime: new Date(),
       info: {
         num: '001',
-        name: 'LIUZHENGNAN',
-        phone: 'IPHONE7 PLUS',
+        name: '',
+        phone: '',
         photo: photoImg,
         photoName: 'none',
         createTime: new Date()
@@ -127,6 +127,12 @@ export default {
       this.$localStorage.set('registerInfoStr', registerInfoStr)
       var itemInfo = this.$localStorage.get('registerInfoStr')
       console.log(itemInfo)
+    },
+    uppercaseName: function(v) {
+      return this.info.name = this.info.name.toUpperCase()
+    },
+    uppercasePhone: function(v) {
+      return this.info.phone = this.info.phone.toUpperCase()
     }
   },
   computed: {
@@ -134,6 +140,14 @@ export default {
       // 格式化日期'yy-MM-dd hh:mm'
       return this.nowDateTime.getFullYear() + '/' + (this.nowDateTime.getMonth() + 1) + '/' + this.nowDateTime.getDate() + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + this.nowDateTime.getHours() + ':' + this.nowDateTime.getMinutes()
     }
+  },
+  mounted () {
+    // 生成三位数字的随机数
+    this.info.num = Math.floor(Math.random() * 1000)
+    this.nowDateTime = new Date()
+    this.info.createTime = this.dateTimeStr
+    // 数字格式化为三位数字，不足用0补齐
+    this.info.num = this.info.num.toString().padStart(3, '0')
   }
 }
 </script>
@@ -224,7 +238,7 @@ export default {
               display block
               text-align center
               width 100%
-              line-height 2.7rem
+              line-height 2.6rem
               font-family pixopedia
         .green-right
           height 100%
@@ -244,6 +258,11 @@ export default {
                 font-size .3rem
                 line-height .34rem
                 font-family pixopedia
+                .black-span
+                  background-color black
+                  padding-top .1rem
+                  padding-right .05rem
+                  color white
                 .direct-img
                   height .3rem
                   width 100%
@@ -251,6 +270,10 @@ export default {
                 .info-input
                   font-family pixopedia
                   background-color #00ff00
+                  width 140%
+                .black-input
+                  background-color black
+                  color white
             .green-img-div
               float right
               height 100%
@@ -319,5 +342,13 @@ export default {
     font-family pixopedia
   .clear
     clear both
-
+input::-webkit-input-placeholder
+  font-family pixel12
+  font-size .3rem
+  color black
+.black-input::-webkit-input-placeholder
+  font-family pixel12
+  font-size .3rem
+  background-color black
+  color white
 </style>
