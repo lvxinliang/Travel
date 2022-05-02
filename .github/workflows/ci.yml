@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v2.3.1
         # 这个为使用 JamesIves/github-pages-deploy-action脚本所需要的配置
         with:
+          persist-credentials: false
           node-version: '14.17.1'
 
       # 执行npm脚本打包项目
@@ -33,7 +34,7 @@ jobs:
 
       # 执行JamesIves/github-pages-deploy-action将项目发布到Github Pages
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           # 该workflow需要操作repo，因此需要一个**，下面会讲到如何获取这个**
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
