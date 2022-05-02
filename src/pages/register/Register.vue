@@ -1,5 +1,9 @@
 <template>
-  <div class="main-div">
+  <div>
+  <div v-if="loading">
+    <PageLoading />
+  </div>
+  <div v-show="!loading" class="main-div">
     <div class="title-div">
       <img class="title-img" :src="claimHeadIcon" alt="logo">
     </div>
@@ -66,6 +70,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -76,9 +81,11 @@ import directImg from '../../assets/images/dir.png'
 import photoImg from '../../assets/images/photo.png'
 import pigImg from '../../assets/images/pig.png'
 import bottomLogo from '../../assets/images/logo.png'
-import commitImg from '../../assets/images/commit.png'
+import commitImg from '../../assets/images/commit-on.png'
+import PageLoading from '../loading/PageLoading'
 export default {
   name: 'RegisterClaim',
+  components: {PageLoading},
   data () {
     return {
       claimHeadIcon: claimHeadIcon,
@@ -88,6 +95,7 @@ export default {
       bottomLogo,
       commitImg,
       pigImg,
+      loading: true,
       nowDateTime: new Date(),
       info: {
         num: '001',
@@ -143,6 +151,9 @@ export default {
   },
   mounted () {
     // 生成三位数字的随机数
+    setTimeout(() => {
+      this.loading = false
+    }, 5000)
     this.info.num = Math.floor(Math.random() * 1000)
     this.nowDateTime = new Date()
     this.info.createTime = this.dateTimeStr

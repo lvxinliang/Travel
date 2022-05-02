@@ -1,9 +1,9 @@
 <template>
   <div class="music-div">
-    <audio ref="audioTip" style="display:none;">
+    <audio ref="audioTip" style="display:none;" autoplay="autoplay" loop="loop">
       <source :src="audio.src">
     </audio>
-    <div @click="play" :class="{'active': audio.playing}" class="icons">
+    <div ref="audioBtn" @click="play" :class="{'active': audio.playing}" class="icons">
       <div class="icon-img">
         <img class="music-icon" :src="audio.playIcon"/>
       </div>
@@ -56,7 +56,7 @@ export default {
 .music-div
   z-index: 9999;
   position: fixed;
-  left 1rem
+  left .3rem
   top .5rem
 
   .icons
