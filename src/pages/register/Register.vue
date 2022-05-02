@@ -105,9 +105,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-@import '../../assets/css/font.css';
-@import '../../assets/css/font-pixopedia.css';
-@import '../../assets/css/font-k8x12S.css';
 .main-div
   background-color #f4f4f4
   position fixed
