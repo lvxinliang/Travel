@@ -38,11 +38,12 @@
                   <span>OWNER IS:</span><br/>
                   <img class="direct-img" :src="directImg">
                   <span>I LIVE IN:</span><br/>
-                  <input class="info-input" type="text" v-bind:value="info.name"/>
-                  <input class="info-input" type="text" v-bind:value="info.phone"/>
+                  <input class="info-input" type="text" maxlength="15"  v-bind:value="info.name"/>
+                  <input class="info-input" type="text" maxlength="15" v-bind:value="info.phone"/>
                 </div>
               </div>
               <div class="green-img-div">
+                <input class="cap" ref="photoref" type="file" accept="image/*" @change="Photograph()" capture="camera"/>
                 <img class="img" :src="info.photo" alt="logo">
               </div>
               <div class="clear"></div>
@@ -92,8 +93,33 @@ export default {
         num: '001',
         name: 'LIUZHENGNAN',
         phone: 'IPHONE7 PLUS',
-        photo: photoImg
+        photo: photoImg,
+        photoName: 'none'
       }
+    }
+  },
+  methods: {
+    /**
+     * 获取用户拍照的图片信息
+     */
+    async Photograph () {
+      // 获取用户拍照的图片名字，显示到页面上
+      this.info.photoName = this.$refs.photoref.files[0].name
+      console.log(this.info.photoName)
+      // 获取图片base64 代码，并存放到 photo 中
+      this.info.photo = await this.FileReader(this.$refs.photoref.files[0])
+    },
+    /**
+     * 返回用户拍照图片的base64
+     */
+    FileReader (FileInfo) {
+      // FileReader 方法参考地址：https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
+      let reader = new FileReader()
+      // readAsDataURL 方法参考地址：https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL
+      reader.readAsDataURL(FileInfo)
+      // 监听读取操作结束
+      /* eslint-disable */
+      return new Promise(resolve => reader.onloadend = () => resolve(reader.result))
     }
   },
   computed: {
@@ -222,10 +248,22 @@ export default {
               float right
               height 100%
               width 40%
+              position relative
               .img
                 margin-top .2rem
                 width 80%
                 height 50%
+              .cap[type="file"]
+                position: absolute;
+                margin-top .2rem
+                width 80%
+                height 50%
+                left: 0;
+                top: 0;
+                right 0;
+                bottom 0;
+                // 设置透明度
+                opacity: 0;
             .clear
               clear: both
         .clear
