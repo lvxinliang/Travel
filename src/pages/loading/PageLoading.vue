@@ -19,11 +19,6 @@ export default {
       imgSrc: loadingImg,
       url: '/register'
     }
-  },
-  mounted () {
-    setTimeout(() => {
-      this.$router.push(this.url)
-    }, 5000)
   }
 }
 </script>
