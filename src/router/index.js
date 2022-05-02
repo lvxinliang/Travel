@@ -6,6 +6,7 @@ import PageLoading from '../pages/loading/PageLoading'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
