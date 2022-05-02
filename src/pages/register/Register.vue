@@ -56,7 +56,7 @@
             <img class="bottom-logo-img" :src="bottomLogo">
           </div>
           <div class="commit-div">
-            <img class="commit-img" :src="commitImg">
+            <img class="commit-img" @click="commit" :src="commitImg">
           </div>
           <div class="clear"></div>
         </dir>
@@ -120,6 +120,9 @@ export default {
       // 监听读取操作结束
       /* eslint-disable */
       return new Promise(resolve => reader.onloadend = () => resolve(reader.result))
+    },
+    commit: function () {
+      console.log('commit')
     }
   },
   computed: {
