@@ -94,7 +94,8 @@ export default {
         name: 'LIUZHENGNAN',
         phone: 'IPHONE7 PLUS',
         photo: photoImg,
-        photoName: 'none'
+        photoName: 'none',
+        createTime: new Date()
       }
     }
   },
@@ -122,7 +123,10 @@ export default {
       return new Promise(resolve => reader.onloadend = () => resolve(reader.result))
     },
     commit: function () {
-      console.log('commit')
+      var registerInfoStr = JSON.stringify(this.info)
+      this.$localStorage.set('registerInfoStr', registerInfoStr)
+      var itemInfo = this.$localStorage.get('registerInfoStr')
+      console.log(itemInfo)
     }
   },
   computed: {
