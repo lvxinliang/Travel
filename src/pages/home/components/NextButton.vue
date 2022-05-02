@@ -25,7 +25,7 @@ export default {
       console.log('next')
       this.buttonIcon = (this.buttonIcon === buttonOff ? buttonOn : buttonOff)
       // 通过路由跳转到register页面
-      this.$router.replace('/register')
+      this.$router.push('/register')
     }
   }
 }
