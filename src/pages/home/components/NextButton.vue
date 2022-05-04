@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     next () {
-      console.log('next')
       this.buttonIcon = (this.buttonIcon === buttonOff ? buttonOn : buttonOff)
       // 通过路由跳转到register页面
       this.$router.push('/register')

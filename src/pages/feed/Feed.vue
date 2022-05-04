@@ -93,7 +93,6 @@ export default {
       }
     },
     itemClick (item) {
-      console.log('itemClick', item.url)
       if (this.itemShow) {
         return
       }

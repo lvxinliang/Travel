@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     iconClick (item) {
-      console.log(item.id)
       this.$emit('iconClick', item)
     }
   },
