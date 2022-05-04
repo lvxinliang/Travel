@@ -12,6 +12,7 @@
       </div>
       <img class="icon-list-border" :src="img.iconListTop"/>
       <div class="icon-list">
+        <IconList/>
       </div>
       <img class="icon-list-border" :src="img.iconListBottom"/>
       <div class="select-list">
@@ -21,7 +22,7 @@
           </div>
         </div>
         <div class="select-list-right">
-          <img class="pig-img" :src="img.feedOver"/>
+          <img class="pig-feed-over" :src="img.feedOver"/>
         </div>
         <div class="div-clear"/>
       </div>
@@ -40,9 +41,11 @@ import iconListTop from '../../assets/images/register-top.png'
 import iconListBottom from '../../assets/images/register-bottom.png'
 import greenPig from '../../assets/images/pig-green.png'
 import feedOver from '../../assets/images/feed-over.png'
+import IconList from './components/IconList'
 
 export default {
   name: 'Feed',
+  components: {IconList},
   data () {
     return {
       img: {
@@ -97,28 +100,35 @@ export default {
 
 .icon-list
   background-color white
-  height 5rem
+  height 5.5rem
   width 100%
 
 .select-list
-  height 6.2rem
+  height 5.5rem
+  margin-top .3rem
   width 100%
 
   .select-list-left
     position relative
+    height 5.5rem
     float left
-    width 80%
+    width 70%
 
   .select-list-right
     position relative
+    height 5.5rem
     float right
-    width 10%
+    width 20%
     padding-left .3rem
     padding-right .3rem
 
-  img
-    width 100%
+  .pig-img
+    width 5.2rem
+    width 5.2rem
+  .pig-feed-over
+    width 60%
     height 100%
+    float right
 
 .bottom-div
   span
