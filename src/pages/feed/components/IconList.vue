@@ -17,7 +17,7 @@
       <div class="phone">
         <img :src="img.page2"/>
         <div class="icons">
-          <div class="page-icon-div" v-for="(item) in page2Data" :key="item.id" @click="iconClick(item)">
+          <div class="icon-div" v-for="(item) in page2Data" :key="item.id" @click="iconClick(item)">
             <img :src="item.url"/>
           </div>
         </div>
@@ -27,7 +27,7 @@
       <div class="phone">
         <img :src="img.page3"/>
         <div class="icons">
-          <div class="page-icon-div" v-for="(item) in page3Data" :key="item.id" @click="iconClick(item)">
+          <div class="icon-div" v-for="(item) in page3Data" :key="item.id" @click="iconClick(item)">
             <img :src="item.url"/>
           </div>
         </div>
@@ -67,7 +67,7 @@ export default {
   methods: {
     iconClick (item) {
       console.log(item.id)
-      this.$emit('iconClick', item.id)
+      this.$emit('iconClick', item)
     }
   },
   mounted () {
@@ -81,7 +81,6 @@ export default {
     axios.get('/static/json/page2.json')
       .then(res => {
         this.page2Data = res.data
-        console.log(this.page2Data)
       })
       .catch(err => {
         console.log(err)
@@ -89,7 +88,6 @@ export default {
     axios.get('/static/json/page3.json')
       .then(res => {
         this.page3Data = res.data
-        console.log(this.page3Data)
       })
       .catch(err => {
         console.log(err)
@@ -120,13 +118,13 @@ export default {
 
     .icons
       position absolute
-      width 100%
+      width 76%
       height 3.5rem
-      margin-left 10%
+      margin-left 12%
 
       .icon-div
         position relative
-        width 16%
+        width 21%
         height 1.8rem
         margin-top 1.5rem
         margin-left 3%
@@ -147,14 +145,9 @@ export default {
       height 100%
 
     .icons
-      left 2%
-      width 80%
-
-      .page-icon-div
+      .icon-div
         position relative
-        width 20%
-        height 1.8rem
-        margin-left 3%
+        margin-top 0rem
         display inline-block
 
         img

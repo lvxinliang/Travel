@@ -1,6 +1,9 @@
 <template>
   <div class="background-div">
     <div class="main-div">
+      <div v-bind:class="{'icon-move':itemShow}" v-show="itemShow">
+        <img ref="iconSelect" src="/static/icons/1.png">
+      </div>
       <div class="page-div">
         <div class="page-up-div" @click="pageDown">
           <img ref="pageDown" class="page" :src="img.pageDownOff"/>
@@ -12,7 +15,7 @@
       </div>
       <img class="icon-list-border" :src="img.iconListTop"/>
       <div class="icon-list">
-        <IconList v-bind:page-num="pageNum"/>
+        <IconList v-bind:page-num="pageNum" @iconClick="itemClick"/>
       </div>
       <img class="icon-list-border" :src="img.iconListBottom"/>
       <div class="select-list">
@@ -60,7 +63,8 @@ export default {
         greenPig,
         feedOver
       },
-      pageNum: 1
+      pageNum: 1,
+      itemShow: false
     }
   },
   methods: {
@@ -87,6 +91,17 @@ export default {
         this.$refs.pageUp.src = this.img.pageUpOn
         this.$refs.pageDown.src = this.img.pageDownOn
       }
+    },
+    itemClick (item) {
+      console.log('itemClick', item.url)
+      if (this.itemShow) {
+        return
+      }
+      this.$refs.iconSelect.src = item.url
+      this.itemShow = true
+      setTimeout(() => {
+        this.itemShow = false
+      }, 2950)
     }
   },
   mounted () {
@@ -96,6 +111,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
+@keyframes ani-move {
+  0% {
+    transform: translateY(0rem);
+  }
+  80% {
+    transform: translateY(7.7rem);
+  }
+  100% {
+    transform: translateY(7.7rem);
+  }
+}
+
 .div-clear
   clear: both
 
@@ -111,6 +139,19 @@ export default {
   margin-top .3rem
   margin-left .3rem
   margin-right .3rem
+
+  .icon-move
+    position: fixed
+    z-index 1
+    width 16%
+    height 1.8rem
+    top: 2rem
+    left: 2.5rem
+    animation ani-move 3s
+
+    img
+      width: 100%
+      height: 100%
 
 .icon-list-border
   width 100%
@@ -158,7 +199,7 @@ export default {
 
   .pig-img
     width 5.2rem
-    width 5.2rem
+    height 5.2rem
 
   .pig-feed-over
     width 60%
