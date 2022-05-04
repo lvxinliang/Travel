@@ -70,21 +70,21 @@ export default {
     }
   },
   mounted () {
-    axios.get('/Travel/static/json/page1.json')
+    axios.get('/static/json/page1.json')
       .then(res => {
         this.page1Data = res.data
       })
       .catch(err => {
         console.log(err)
       })
-    axios.get('/Travel/static/json/page2.json')
+    axios.get('/static/json/page2.json')
       .then(res => {
         this.page2Data = res.data
       })
       .catch(err => {
         console.log(err)
       })
-    axios.get('/Travel/static/json/page3.json')
+    axios.get('/static/json/page3.json')
       .then(res => {
         this.page3Data = res.data
       })
