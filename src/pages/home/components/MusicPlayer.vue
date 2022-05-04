@@ -57,7 +57,7 @@ export default {
   z-index: 9999;
   position: fixed;
   left .3rem
-  top .5rem
+  top .3rem
 
   .icons
     overflow hidden

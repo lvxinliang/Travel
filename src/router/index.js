@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../pages/home/Home'
 import Register from '../pages/register/Register'
 import PageLoading from '../pages/loading/PageLoading'
+import Feed from '../pages/feed/Feed'
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +22,11 @@ export default new Router({
       path: '/loading',
       name: 'PageLoading',
       component: PageLoading
+    },
+    {
+      path: '/feed',
+      name: 'Feed',
+      component: Feed
     }
   ]
 })

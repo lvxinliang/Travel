@@ -145,7 +145,8 @@ export default {
       var registerInfoStr = JSON.stringify(this.info)
       this.$localStorage.set('registerInfoStr', registerInfoStr)
       var itemInfo = this.$localStorage.get('registerInfoStr')
-      console.log(itemInfo)
+      // console.log(itemInfo)
+      this.$router.push({path: '/feed'})
     },
     uppercaseName: function (v) {
       return this.info.name = this.info.name.toUpperCase()
@@ -181,13 +182,13 @@ export default {
   width 100vw
 
   .title-div
-    height 26%
+    height 3.4rem
     margin-left .3rem
     margin-right .3rem
 
     .title-img
       height 2rem
-      padding-top 1.5rem
+      padding-top 1.3rem
       width 100%
       margin 0 auto
       display block
