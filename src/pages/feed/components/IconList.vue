@@ -6,17 +6,8 @@
     <div class="phone">
       <img :src="img.page1"/>
       <div class="icons">
-        <div class="icon-div">
-          <img :src="img.icon1"/>
-        </div>
-        <div class="icon-div">
-          <img :src="img.icon1"/>
-        </div>
-        <div class="icon-div">
-          <img :src="img.icon1"/>
-        </div>
-        <div class="icon-div">
-          <img :src="img.icon1"/>
+        <div class="icon-div" v-for="item in page1Date" :key="item.id">
+          <img :src="item.url"/>
         </div>
       </div>
     </div>
@@ -26,7 +17,7 @@
 <script>
 import logo from '../../../assets/images/logo.png'
 import page1 from '../../../assets/images/page1.png'
-import icon1 from '../../../assets/images/icons/1.png'
+import axios from 'axios'
 
 export default {
   name: 'IconList',
@@ -34,10 +25,19 @@ export default {
     return {
       img: {
         logo: logo,
-        page1,
-        icon1
-      }
+        page1
+      },
+      page1Date: null
     }
+  },
+  mounted () {
+    axios.get('/static/json/page1.json')
+      .then(res => {
+        this.page1Date = res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>
