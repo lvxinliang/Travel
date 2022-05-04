@@ -2,17 +2,17 @@
   <div class="background-div">
     <div class="main-div">
       <div class="page-div">
-        <div class="page-up-div">
-          <img class="page" :src="img.pageDownOff"/>
+        <div class="page-up-div" @click="pageDown">
+          <img ref="pageDown" class="page" :src="img.pageDownOff"/>
         </div>
         <div class="page-up-div page-down-div">
-          <img class="page" :src="img.pageUpOff"/>
+          <img ref="pageUp" class="page" :src="img.pageUpOn" @click="pageUp"/>
         </div>
         <div class="div-clear"/>
       </div>
       <img class="icon-list-border" :src="img.iconListTop"/>
       <div class="icon-list">
-        <IconList/>
+        <IconList v-bind:page-num="pageNum"/>
       </div>
       <img class="icon-list-border" :src="img.iconListBottom"/>
       <div class="select-list">
@@ -37,6 +37,8 @@
 <script>
 import pageUpOff from '../../assets/images/page-up-off.png'
 import pageDownOff from '../../assets/images/page-down-off.png'
+import pageUpOn from '../../assets/images/page-up-on.png'
+import pageDownOn from '../../assets/images/page-down-on.png'
 import iconListTop from '../../assets/images/register-top.png'
 import iconListBottom from '../../assets/images/register-bottom.png'
 import greenPig from '../../assets/images/pig-green.png'
@@ -51,12 +53,44 @@ export default {
       img: {
         pageUpOff,
         pageDownOff,
+        pageUpOn,
+        pageDownOn,
         iconListTop,
         iconListBottom,
         greenPig,
         feedOver
+      },
+      pageNum: 1
+    }
+  },
+  methods: {
+    pageUp () {
+      if (this.pageNum > 1) {
+        this.pageNum--
+      }
+      this.changePage()
+    },
+    pageDown () {
+      if (this.pageNum < 4) {
+        this.pageNum++
+      }
+      this.changePage()
+    },
+    changePage () {
+      if (this.pageNum === 1) {
+        this.$refs.pageUp.src = this.img.pageUpOff
+        this.$refs.pageDown.src = this.img.pageDownOn
+      } else if (this.pageNum === 4) {
+        this.$refs.pageUp.src = this.img.pageUpOn
+        this.$refs.pageDown.src = this.img.pageDownOff
+      } else {
+        this.$refs.pageUp.src = this.img.pageUpOn
+        this.$refs.pageDown.src = this.img.pageDownOn
       }
     }
+  },
+  mounted () {
+    this.changePage()
   }
 }
 </script>
@@ -125,6 +159,7 @@ export default {
   .pig-img
     width 5.2rem
     width 5.2rem
+
   .pig-feed-over
     width 60%
     height 100%
