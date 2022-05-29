@@ -58,7 +58,7 @@
                 <div class="green-img-div">
                   <input class="cap" ref="photoref" type="file" accept="image/*" @change="Photograph()"
                          capture="camera"/>
-                  <img class="img" :src="info.photo" alt="logo">
+                  <img class="img" :src="photo" alt="logo">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -108,11 +108,11 @@ export default {
       pigImg,
       loading: true,
       nowDateTime: new Date(),
+      photo: photoImg,
       info: {
         num: '001',
         name: '',
         phone: '',
-        photo: photoImg,
         photoName: 'none',
         createTime: new Date()
       }
@@ -127,7 +127,7 @@ export default {
       this.info.photoName = this.$refs.photoref.files[0].name
       console.log(this.info.photoName)
       // 获取图片base64 代码，并存放到 photo 中
-      this.info.photo = await this.FileReader(this.$refs.photoref.files[0])
+      this.photo = await this.FileReader(this.$refs.photoref.files[0])
     },
     /**
      * 返回用户拍照图片的base64
@@ -154,7 +154,7 @@ export default {
       }
       var registerInfoStr = JSON.stringify(this.info)
       this.$localStorage.set('registerInfoStr', registerInfoStr)
-      var itemInfo = this.$localStorage.get('registerInfoStr')
+      this.$localStorage.set('registerInfoPhoto', this.photo)
       // console.log(itemInfo)
       this.$router.push({path: '/feed'})
     },

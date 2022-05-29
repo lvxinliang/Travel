@@ -41,14 +41,12 @@
                 <span>OWNER IS:</span><br/>
                 <img class="direct-img" :src="directImg">
                 <span>I LIVE IN:</span><br/>
-                <input class="info-input black-input" @change="uppercaseName()" type="text" readonly
-                       maxlength="15" v-model="info.name"/>
-                <input class="info-input" type="text" readonly @change="uppercasePhone()" maxlength="15"
-                       v-model="info.phone"/>
+                <span class="info-input black-input">{{ info.name }}</span>
+                <span class="info-input">{{ info.phone }}</span>
               </div>
             </div>
             <div class="green-img-div">
-              <img class="img" :src="info.photo" alt="logo">
+              <img class="img" :src="photo" alt="logo">
             </div>
             <div class="clear"></div>
           </div>
@@ -102,11 +100,11 @@ export default {
       pigImg,
       loading: true,
       nowDateTime: new Date(),
+      photo: photoImg,
       info: {
         num: '001',
         name: '',
         phone: '',
-        photo: photoImg,
         photoName: 'none',
         createTime: new Date()
       },
@@ -120,8 +118,9 @@ export default {
     var registerInfoStr = this.$localStorage.get('registerInfoStr')
     var selectedStr = this.$localStorage.get('selectedStr')
     var registerInfo = JSON.parse(registerInfoStr)
-    var selected = JSON.parse(selectedStr)
     this.info = registerInfo
+    this.phone = this.$localStorage.get('registerInfoPhoto')
+    var selected = JSON.parse(selectedStr)
     this.selected = selected
     console.info(this.selected)
   }
@@ -245,11 +244,16 @@ export default {
                 margin-right .1rem
 
               .info-input
+                padding-top 0.07rem
                 font-family pixopedia
+                font-size .3rem
+                line-height .34rem
+                display block
                 background-color #00ff00
-                width 140%
 
               .black-input
+                display block
+                width auto
                 background-color black
                 color white
 
