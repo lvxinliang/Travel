@@ -56,17 +56,13 @@
       <br>
       <hr class="hr bottom1"/>
       <hr class="hr bottom1"/>
-      <div class="text-div">
-        <div class="name"><span>SLIP:</span></div>
-        <div class="value"><span>00293451294759039245100</span></div>
+      <div class="bottom-text-div">
+        <div class="name"><span>DESCRIPTION:</span></div>
+        <div class="value"><span>TIME:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRICE:</span></div>
         <div class="clear"></div>
-        <div class="name"><span>STAFF:</span></div>
-        <div class="value"><span>LZN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRANS:</span>
+        <div class="name"><span>AMOUNT:</span></div>
+        <div class="value"><span></span>
         </div>
-        <div class="clear"></div>
-        <div class="name"><span>DATE:</span></div>
-        <div class="value"><span v-html="info.createTime"></span></div>
-        <div class="clear"></div>
       </div>
       <hr class="hr bottom1"/>
     </div>
@@ -326,6 +322,24 @@ export default {
     margin-left .5rem
     margin-bottom .1rem
     width 20%
+    font-family pixopedia
+
+  .value
+    float left
+    font-family pixopedia
+
+  .clear
+    clear both
+.bottom-text-div
+  padding-top .1rem
+  width 90%
+  //background-color aquamarine
+
+  .name
+    float left
+    margin-left .5rem
+    margin-bottom .1rem
+    width 40%
     font-family pixopedia
 
   .value
