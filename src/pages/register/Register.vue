@@ -142,6 +142,16 @@ export default {
       return new Promise(resolve => reader.onloadend = () => resolve(reader.result))
     },
     commit: function () {
+      if (this.info.name.length == 0) {
+        this.$toast('输入姓名拼音')
+        return
+      } else if (this.info.phone.length == 0) {
+        this.$toast('输入手机型号')
+        return
+      } else if (this.info.photoName == 'none') {
+        this.$toast('请进行拍照')
+        return
+      }
       var registerInfoStr = JSON.stringify(this.info)
       this.$localStorage.set('registerInfoStr', registerInfoStr)
       var itemInfo = this.$localStorage.get('registerInfoStr')

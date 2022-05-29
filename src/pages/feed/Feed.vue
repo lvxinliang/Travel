@@ -97,6 +97,10 @@ export default {
       if (this.itemShow) {
         return
       }
+      if (this.selected.size >= 8) {
+        this.$toast('已达投喂上限')
+        return
+      }
       var begin = item.url.lastIndexOf('/') + 1
       var end = item.url.lastIndexOf('.png')
       var num = item.url.substring(begin, end)
