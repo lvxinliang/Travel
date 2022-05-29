@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="select-list-right">
-          <img class="pig-feed-over" :src="img.feedOver"/>
+          <img class="pig-feed-over" @click="commit" :src="img.feedOver"/>
         </div>
         <div class="div-clear"/>
       </div>
@@ -63,6 +63,7 @@ export default {
         greenPig,
         feedOver
       },
+      selected: [],
       pageNum: 1,
       itemShow: false
     }
@@ -96,15 +97,30 @@ export default {
       if (this.itemShow) {
         return
       }
+      if (this.selected.size >= 8) {
+        this.$toast('已达投喂上限')
+        return
+      }
+      var begin = item.url.lastIndexOf('/') + 1
+      var end = item.url.lastIndexOf('.png')
+      var num = item.url.substring(begin, end)
+      this.selected.add(num)
       this.$refs.iconSelect.src = item.url
       this.itemShow = true
       setTimeout(() => {
         this.itemShow = false
       }, 2950)
+    },
+    commit: function () {
+      console.log(this.selected)
+      var selectedStr = JSON.stringify(this.selected)
+      this.$localStorage.set('selectedStr', selectedStr)
+      this.$router.push({path: '/result'})
     }
   },
   mounted () {
     this.changePage()
+    this.selected = new Set()
   }
 }
 </script>

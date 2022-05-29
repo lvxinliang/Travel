@@ -70,26 +70,144 @@ export default {
     }
   },
   mounted () {
-    axios.get('/Travel/static/json/page1.json')
+    axios.get('/static/json/page1.json')
       .then(res => {
         this.page1Data = res.data
       })
       .catch(err => {
         console.log(err)
+        this.page1Data = JSON.parse('[\n' +
+          '  {\n' +
+          '    "url": "./static/icons/1.png",\n' +
+          '    "id": "1"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/2.png",\n' +
+          '    "id": "2"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/3.png",\n' +
+          '    "id": "3"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/4.png",\n' +
+          '    "id": "4"\n' +
+          '  }\n' +
+          ']')
       })
-    axios.get('/Travel/static/json/page2.json')
+    axios.get('/static/json/page2.json')
       .then(res => {
         this.page2Data = res.data
       })
       .catch(err => {
         console.log(err)
+        this.page2Data = JSON.parse('[\n' +
+          '  {\n' +
+          '    "url": "./static/icons/5.png",\n' +
+          '    "id": "5"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/6.png",\n' +
+          '    "id": "6"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/7.png",\n' +
+          '    "id": "7"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/8.png",\n' +
+          '    "id": "8"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/9.png",\n' +
+          '    "id": "9"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/10.png",\n' +
+          '    "id": "10"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/11.png",\n' +
+          '    "id": "11"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/12.png",\n' +
+          '    "id": "12"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/13.png",\n' +
+          '    "id": "13"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/14.png",\n' +
+          '    "id": "14"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/15.png",\n' +
+          '    "id": "15"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/16.png",\n' +
+          '    "id": "16"\n' +
+          '  }\n' +
+          ']\n')
       })
-    axios.get('/Travel/static/json/page3.json')
+    axios.get('/static/json/page3.json')
       .then(res => {
         this.page3Data = res.data
       })
       .catch(err => {
         console.log(err)
+        this.page3Data = JSON.parse('[\n' +
+          '  {\n' +
+          '    "url": "./static/icons/17.png",\n' +
+          '    "id": "17"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/18.png",\n' +
+          '    "id": "18"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/19.png",\n' +
+          '    "id": "19"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/20.png",\n' +
+          '    "id": "20"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/21.png",\n' +
+          '    "id": "21"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/22.png",\n' +
+          '    "id": "22"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/23.png",\n' +
+          '    "id": "23"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/24.png",\n' +
+          '    "id": "24"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/25.png",\n' +
+          '    "id": "25"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/26.png",\n' +
+          '    "id": "26"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/27.png",\n' +
+          '    "id": "27"\n' +
+          '  },\n' +
+          '  {\n' +
+          '    "url": "./static/icons/28.png",\n' +
+          '    "id": "28"\n' +
+          '  }\n' +
+          ']\n')
       })
   }
 }

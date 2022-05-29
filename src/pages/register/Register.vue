@@ -58,7 +58,7 @@
                 <div class="green-img-div">
                   <input class="cap" ref="photoref" type="file" accept="image/*" @change="Photograph()"
                          capture="camera"/>
-                  <img class="img" :src="info.photo" alt="logo">
+                  <img class="img" :src="photo" alt="logo">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -108,11 +108,11 @@ export default {
       pigImg,
       loading: true,
       nowDateTime: new Date(),
+      photo: photoImg,
       info: {
         num: '001',
         name: '',
         phone: '',
-        photo: photoImg,
         photoName: 'none',
         createTime: new Date()
       }
@@ -125,9 +125,8 @@ export default {
     async Photograph () {
       // 获取用户拍照的图片名字，显示到页面上
       this.info.photoName = this.$refs.photoref.files[0].name
-      console.log(this.info.photoName)
       // 获取图片base64 代码，并存放到 photo 中
-      this.info.photo = await this.FileReader(this.$refs.photoref.files[0])
+      this.photo = await this.FileReader(this.$refs.photoref.files[0])
     },
     /**
      * 返回用户拍照图片的base64
@@ -142,9 +141,23 @@ export default {
       return new Promise(resolve => reader.onloadend = () => resolve(reader.result))
     },
     commit: function () {
+      if (this.info.name.length == 0) {
+        this.$toast('输入姓名拼音')
+        return
+      } else if (this.info.phone.length == 0) {
+        this.$toast('输入手机型号')
+        return
+      } else if (this.info.photoName == 'none') {
+        this.$toast('请进行拍照')
+        return
+      }
+      // 压缩图片
+      this.dealImage(this.photo, 800, (result) => {
+        this.photo = result
+      }, this)
       var registerInfoStr = JSON.stringify(this.info)
       this.$localStorage.set('registerInfoStr', registerInfoStr)
-      var itemInfo = this.$localStorage.get('registerInfoStr')
+      this.$localStorage.set('registerInfoPhoto', this.photo)
       // console.log(itemInfo)
       this.$router.push({path: '/feed'})
     },
@@ -153,6 +166,67 @@ export default {
     },
     uppercasePhone: function (v) {
       return this.info.phone = this.info.phone.toUpperCase()
+    },
+    dealImage(base64, w, callback,img) {
+      const global = this;
+      var newImage = new Image()
+      //压缩系数0-1之间
+      var quality = 0.8
+      newImage.src = base64
+      newImage.setAttribute('crossOrigin', 'Anonymous')    //url为外域时需要
+      var imgWidth, imgHeight
+      newImage.onload = function () {
+        imgWidth = this.width
+        imgHeight = this.height
+        var canvas = document.createElement('canvas')
+        var ctx = canvas.getContext('2d')
+        canvas.width = imgWidth;
+        canvas.height = imgHeight;
+        //  ========图片旋转==========
+        if(global.Orientation && global.Orientation != 1){
+          //  alert('旋转处理,Orientation:'+global.Orientation);
+          switch(global.Orientation){
+            case 6://需要顺时针（向左）90度旋转
+              // alert('需要顺时针（向左）90度旋转');
+              canvas.width = imgHeight;
+              canvas.height = imgWidth;
+              ctx.rotate(Math.PI / 2);
+              ctx.drawImage(this, 0, -imgHeight, imgWidth, imgHeight);
+              break;
+            case 8://需要逆时针（向右）90度旋转
+              // alert('需要顺时针（向右）90度旋转');
+              canvas.width = imgHeight;
+              canvas.height = imgWidth;
+              ctx.rotate(3 * Math.PI / 2);
+              ctx.drawImage(this, -imgWidth, 0, imgWidth, imgHeight);
+
+              break;
+            case 3://需要180度旋转
+              //  alert('需要180度旋转');
+              ctx.rotate(Math.PI);
+              ctx.drawImage(this, -imgWidth, -imgHeight, imgWidth, imgHeight);
+              break;
+            default:
+              break;
+          }
+        }else{
+          ctx.drawImage(this, 0, 0, canvas.width, canvas.height)
+        }
+        // ========图片旋转===========
+
+        var ba = canvas.toDataURL('image/jpeg', quality) //压缩语句
+        // 如想确保图片压缩到自己想要的尺寸,如要求在50-150kb之间，请加以下语句，quality初始值根据情况自定
+        // while (base64.length / 1024 < 150) {
+        //     quality -= 0.01;
+        //     base64 = canvas.toDataURL("image/jpeg", quality);
+        // }
+        // 防止最后一次压缩低于最低尺寸，只要quality递减合理，无需考虑
+        // while (base64.length / 1024 > 50) {
+        //     quality += 0.001;
+        //     base64 = canvas.toDataURL("image/jpeg", quality);
+        // }
+        callback(ba) //必须通过回调函数返回，否则无法及时拿到该值
+      }
     }
   },
   computed: {
@@ -249,7 +323,7 @@ export default {
           border-radius .2rem
           height 2.4rem
           float left
-          width 2.4rem
+          width 2.2rem
           position: relative
           background-color white
 
@@ -316,7 +390,7 @@ export default {
                 .info-input
                   font-family pixopedia
                   background-color #00ff00
-                  width 140%
+                  width 100%
 
                 .black-input
                   background-color black
