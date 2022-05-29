@@ -1,12 +1,12 @@
 @font-face {
   font-family: "pixel12";
-  src: url('../fonts/pixel12.ttf');
+  src: url('pixel12.ttf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "pixopedia";
-  src: url('../fonts/pixopedia.ttf');
+  src: url('pixopedia.ttf');
   font-weight: normal;
   font-style: normal;
 }
