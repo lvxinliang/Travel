@@ -127,7 +127,7 @@ export default {
   .logo-div
     margin-top 1rem
     width 100%
-    height 4rem
+    height 5rem
     .logo-img
       margin-left 10%
       width 80%
