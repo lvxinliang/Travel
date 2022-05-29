@@ -9,8 +9,8 @@ import './assets/styles/reset.css'
 import './assets/styles/border.css'
 import './assets/styles/iconfont.css'
 import './assets/css/font.css'
-import 'vue2-toast/lib/toast.css';
-import Toast from 'vue2-toast';
+import 'vue2-toast/lib/toast.css'
+import Toast from 'vue2-toast'
 
 fastclick.attach(document.body)
 Vue.config.productionTip = false
