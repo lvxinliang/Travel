@@ -118,7 +118,6 @@ export default {
     this.photo = this.$localStorage.get('registerInfoPhoto')
     var selected = JSON.parse(selectedStr)
     this.selected = selected
-    console.info(this.selected)
   }
 }
 </script>
