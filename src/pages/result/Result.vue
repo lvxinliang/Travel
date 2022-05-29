@@ -72,6 +72,7 @@
       </div>
       <hr class="hr bottom1"/>
     </div>
+    <SelectedList v-bind:selected="selected"></SelectedList>
   </div>
 </template>
 
@@ -85,9 +86,11 @@ import pigImg from '../../assets/images/pig.png'
 import bottomLogo from '../../assets/images/logo.png'
 import commitImg from '../../assets/images/commit-on.png'
 import resultLogo from '../../assets/images/result_logo.png'
+import SelectedList from './components/SelectedList'
 
 export default {
   name: 'Result',
+  components: {SelectedList},
   data () {
     return {
       claimHeadIcon: claimHeadIcon,
