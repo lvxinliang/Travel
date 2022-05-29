@@ -259,7 +259,7 @@ export default {
           border-radius .2rem
           height 2.4rem
           float left
-          width 2.4rem
+          width 2.2rem
           position: relative
           background-color white
 
@@ -326,7 +326,7 @@ export default {
                 .info-input
                   font-family pixopedia
                   background-color #00ff00
-                  width 140%
+                  width 100%
 
                 .black-input
                   background-color black

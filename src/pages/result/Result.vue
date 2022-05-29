@@ -119,7 +119,7 @@ export default {
     var selectedStr = this.$localStorage.get('selectedStr')
     var registerInfo = JSON.parse(registerInfoStr)
     this.info = registerInfo
-    this.phone = this.$localStorage.get('registerInfoPhoto')
+    this.photo = this.$localStorage.get('registerInfoPhoto')
     var selected = JSON.parse(selectedStr)
     this.selected = selected
     console.info(this.selected)
