@@ -56,8 +56,7 @@
                   </div>
                 </div>
                 <div class="green-img-div">
-                  <input class="cap" ref="photoref" type="file" accept="image/*" @change="Photograph()"
-                         capture="camera"/>
+                  <input class="cap" ref="photoref" type="file" accept="image/*" @change="Photograph()"/>
                   <img class="img" :src="photo" alt="logo">
                 </div>
                 <div class="clear"></div>
